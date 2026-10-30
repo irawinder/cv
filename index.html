@@ -92,12 +92,29 @@
 
   .pubs li { margin-bottom: 10px; }
   .muted { color: var(--muted); }
+  figure { margin: 14px 0 16px; }
+  figure img { display: block; width: 100%; height: auto; border-radius: 10px; background: var(--chip); }
+  figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .pair { display: grid; grid-template-columns: 1.6fr 1fr; gap: 10px; }
+  .pair img { height: 100%; object-fit: cover; }
+  @media (max-width: 560px) { .pair { grid-template-columns: 1fr; } }
+  .video { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; }
+  .video button { all: unset; cursor: pointer; position: absolute; inset: 0; display: block; }
+  .video button img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  .video button::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px;
+    border-radius: 50%; background: rgba(0,0,0,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 7v10l8-5z'/%3E%3C/svg%3E") center / 40px no-repeat;
+    transition: background-color .15s;
+  }
+  .video button:hover::after { background-color: rgba(0,0,0,.8); }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 
   /* Short view hides the detail marked .x */
   body.short .x { display: none !important; }
 
   @media print {
+    figure, .video { display: none !important; }
     :root { --bg: #fff; --fg: #000; --muted: #555; --rule: #ccc; --accent: #000; }
     body { font-size: 9.5pt; line-height: 1.4; }
     main { max-width: none; padding: 0; }
@@ -236,6 +253,10 @@
       <div class="role-head"><h3><a href="https://aps-i.chibatech.dev" target="_blank" rel="noopener">APS-I: Antidisciplinary Project Studio I</a></h3><span class="when">Spring 2026</span></div>
       <p class="title">Chiba Tech SDS</p>
       <p>An AI-native capstone course. The AI coding assistant is the medium students work in, not a banned shortcut.</p>
+      <figure>
+        <a href="https://aps-i.chibatech.dev/t0-b/" target="_blank" rel="noopener"><img src="media/henkaku-island.jpg" width="1600" height="840" loading="lazy" alt="Henkaku Island: a voxel island with forests, cherry blossoms, shrines and a village, rendered in the browser"></a>
+        <figcaption>Henkaku Island, the shared p5.js world students build their simulations on. <a href="https://aps-i.chibatech.dev/t0-b/" target="_blank" rel="noopener">Explore it live →</a></figcaption>
+      </figure>
       <ul>
         <li>Every module is a self-contained project folder that students open with their AI assistant. The assistant walks them through the assignment and how to package it. No prior coding or terminal experience is assumed.</li>
         <li>Four phases cover environmental sensing (Bayesian inference), agents and decision-making (epsilon-greedy learning), emergence and multi-agent systems (a fishing-village commons), and digital fairness and institutional design. All are browser-based p5.js simulations.</li>
@@ -252,6 +273,17 @@
     <div class="role">
       <div class="role-head"><h3><a href="https://ira.mit.edu/tactile-matrix" target="_blank" rel="noopener">Tactile Matrix / CityScope</a></h3><span class="when">2014 – 2018</span></div>
       <p class="title">MIT Media Lab</p>
+      <figure>
+        <div class="pair">
+          <img src="media/tactile-matrix-riyadh.jpg" width="1200" height="782" loading="lazy" alt="Four people gather around a Tactile Matrix table, rearranging projected Lego blocks of a city model">
+          <img src="media/tactile-matrix-table.jpg" width="898" height="673" loading="lazy" alt="A Tactile Matrix table glowing purple and green with Lego towers, next to a screen showing the 3D model">
+        </div>
+        <figcaption>Tactile Matrix sessions at the MIT Media Lab. Left photo: Andy Ryan.</figcaption>
+      </figure>
+      <figure>
+        <div class="video"><button type="button" data-yt="3jvmoj7pLZU" aria-label="Play video: Tactile Matrix — Lego Scanning Technology Invented by MIT"><img src="media/tactile-matrix-video.jpg" width="1280" height="720" loading="lazy" alt=""></button></div>
+        <figcaption>Tactile Matrix: Lego scanning and real-time simulation (video). <a href="https://ira.mit.edu/tactile-matrix" target="_blank" rel="noopener">More projects →</a></figcaption>
+      </figure>
       <ul>
         <li>An open-source tangible interface. Tagged physical blocks drive real-time simulation and 3D projection mapping, so stakeholders can collaborate around a table.</li>
         <li>Demonstrated for Bill Gates (Gates Ventures, 2018) and at the G7 ICT Forum (2016). Cited in PCAST's <em>Technology and the Future of Cities</em> report (2015). US provisional patent (2015).</li>
@@ -348,6 +380,18 @@
     if (!initial) { try { initial = localStorage.getItem('cv-view'); } catch (e) {} }
     setView(initial === 'short' ? 'short' : 'full');
   })();
+</script>
+<script>
+  document.querySelectorAll('.video button[data-yt]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
+      f.title = b.getAttribute('aria-label').replace('Play video: ', '');
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      b.replaceWith(f);
+    });
+  });
 </script>
 </body>
 </html>
