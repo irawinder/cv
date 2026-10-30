@@ -177,7 +177,6 @@
       <button type="button" data-view="short" aria-pressed="false">Short</button>
     </div>
     <div class="seg" role="group" aria-label="Theme">
-      <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
       <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
       <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
     </div>
@@ -405,13 +404,14 @@
   (function () {
     var root = document.documentElement;
     var choices = document.querySelectorAll('.seg button[data-theme-choice]');
-    function setTheme(t) {
-      if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
-      choices.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.themeChoice === (t || 'auto'))); });
-      try { if (t === 'light' || t === 'dark') localStorage.setItem('cv-theme', t); else localStorage.removeItem('cv-theme'); } catch (e) {}
+    function setTheme(t, save) {
+      root.setAttribute('data-theme', t);
+      choices.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.themeChoice === t)); });
+      if (save) { try { localStorage.setItem('cv-theme', t); } catch (e) {} }
     }
-    choices.forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.themeChoice); }); });
-    setTheme(root.getAttribute('data-theme') || 'auto');
+    choices.forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.themeChoice, true); }); });
+    // Default: the reader's saved choice, otherwise their browser setting.
+    setTheme(root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'), false);
   })();
   document.querySelectorAll('.video button[data-yt]').forEach(function (b) {
     b.addEventListener('click', function () {
