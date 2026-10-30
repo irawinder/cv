@@ -83,14 +83,15 @@
   ul { margin: 0; padding-left: 20px; }
   li { margin: 0 0 6px; }
   li::marker { color: var(--muted); }
-  /* Pills for org/project names: bullet lead-in labels, inline project links, client tags */
-  .role li > strong:first-child, .role p a, .role li a, .tag {
-    display: inline-block; line-height: 1.35; padding: 0 8px; margin: 0 1px 1px 0;
-    border-radius: 999px; background: var(--chip); color: var(--fg); font-weight: 600; font-size: 0.92em;
-    text-decoration: none;
+  /* Org and project names as pills */
+  .role-head h3 {
+    display: inline-block; padding: 3px 12px; border-radius: 999px;
+    background: var(--chip); color: var(--fg);
   }
-  .role p a, .role li a { color: var(--accent); }
-  .role p a:hover, .role li a:hover { text-decoration: none; filter: brightness(0.95); }
+  .role-head h3 a { color: inherit; }
+  .role-head h3 a:hover { color: var(--accent); text-decoration: none; }
+  .role-head { align-items: center; }
+  .role .title { margin-left: 12px; }
 
   .skills { display: grid; grid-template-columns: 180px 1fr; gap: 8px 16px; margin: 0; }
   .skills dt { font-weight: 600; }
@@ -138,7 +139,8 @@
     h2 { font-size: 8pt; margin-bottom: 8pt; padding-bottom: 4pt; }
     .summary p { font-size: 9.5pt; margin-bottom: 6pt; }
     .role { padding: 8pt 0 10pt; }
-    .role li > strong:first-child, .role p a, .role li a, .tag { background: none; padding: 0; font-size: 1em; color: inherit; }
+    .role-head h3 { background: none; padding: 0; }
+    .role .title { margin-left: 0; }
     .role-head h3 { font-size: 10.5pt; }
     .role-head .when, .role .title { font-size: 9pt; }
     .role .title { margin: 0 0 4pt; }
@@ -222,7 +224,7 @@
       <div class="role-head"><h3>On Cue Design LLC</h3><span class="when">2015 – present</span></div>
       <p class="title">Principal · Cambridge, MA</p>
       <ul>
-        <li>Build interactive simulations of complex systems for business planning, client engagement and education. Clients include <span class="tag">Airbus</span> <span class="tag">GSK</span> <span class="tag">Walmart</span> <span class="tag">Lend Lease</span> <span class="tag">Gensler</span></li>
+        <li>Build interactive simulations of complex systems for business planning, client engagement and education. Clients include Airbus, GSK, Walmart, Lend Lease and Gensler.</li>
       </ul>
     </div>
 
