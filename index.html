@@ -99,7 +99,7 @@
   .pubs li { margin-bottom: 10px; }
   .muted { color: var(--muted); }
   figure { margin: 14px 0 16px; }
-  figure img { display: block; width: 100%; height: auto; border-radius: 10px; background: var(--chip); }
+  figure img, figure > video { display: block; width: 100%; height: auto; border-radius: 10px; background: var(--chip); }
   figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; }
   .pair { display: grid; grid-template-columns: 1.6fr 1fr; gap: 10px; }
   .pair img { height: 100%; object-fit: cover; }
@@ -219,6 +219,10 @@
         <li class="x"><strong>Plato:</strong> a browser app (p5.js, WebGL) for making, collecting and sharing ideas as collaboratively edited 3D knowledge graphs, built on Eidos. Grew out of 26 Processing sketches exploring spatial representations of meaning.</li>
         <li class="x"><strong>Sibyl:</strong> a prompt-template API server that gives client apps chat, image, speech and transcription features through simple URL calls. <strong>Experium Sketch Dictionary:</strong> a lightweight dictionary client for the Eidos API.</li>
       </ul>
+      <figure class="x">
+        <video src="media/gyrotree.mp4" poster="media/gyrotree-poster.jpg" width="1280" height="798" autoplay muted loop playsinline controls preload="metadata" aria-label="GyroTree prototype: navigating the Eidos graph for the word good, from headwords to English and Japanese senses and examples"></video>
+        <figcaption>GyroTree, a Processing prototype for flying through the Eidos graph: a word, its headwords, senses and examples in English and Japanese.</figcaption>
+      </figure>
     </div>
 
     <div class="role">
