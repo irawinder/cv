@@ -88,14 +88,30 @@
 
   @media print {
     :root { --bg: #fff; --fg: #000; --muted: #555; --rule: #ccc; --accent: #000; }
-    body { font-size: 10.5pt; }
+    body { font-size: 9.5pt; line-height: 1.4; }
     main { max-width: none; padding: 0; }
     .toolbar, footer { display: none; }
-    header h1 { font-size: 24pt; }
-    section { margin-top: 18pt; break-inside: auto; }
-    .role { break-inside: avoid; margin-bottom: 12pt; }
+    header h1 { font-size: 22pt; }
+    .tagline { font-size: 11pt; margin-bottom: 4pt; }
+    .contact { font-size: 9pt; }
+    section { margin-top: 14pt; }
+    h2 { font-size: 8pt; margin-bottom: 8pt; padding-bottom: 4pt; }
+    .summary p { font-size: 9.5pt; margin-bottom: 6pt; }
+    .role { margin-bottom: 10pt; }
+    .role-head h3 { font-size: 10.5pt; }
+    .role-head .when, .role .title { font-size: 9pt; }
+    .role .title { margin: 0 0 4pt; }
+    li { margin-bottom: 3pt; }
+    .pubs li { margin-bottom: 4pt; }
+    .skills { grid-template-columns: 130px 1fr; gap: 3pt 12pt; }
+    /* Keep headings with what follows: the invisible spacer forces a heading
+       onto the next page when there isn't room for a few lines beneath it. */
+    section::before, .role::before {
+      content: ""; display: block; height: 72pt; margin-bottom: -72pt; break-inside: avoid;
+    }
+    h2, .role-head, li, .skills, .role > p { break-inside: avoid; }
     a { text-decoration: none; }
-    @page { size: letter; margin: 0.6in; }
+    @page { size: letter; margin: 0.55in 0.6in; }
   }
 </style>
 </head>
